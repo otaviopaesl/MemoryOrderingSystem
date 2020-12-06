@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using MemoryOrderingSystem.Data;
 using MemoryOrderingSystem.Models;
 using MemoryOrderingSystem.Services;
 using Swashbuckle.AspNetCore.Annotations;
@@ -48,7 +47,7 @@ namespace MemoryOrderingSystem.Controllers
         [SwaggerResponse(400, "Erro!", typeof(Dictionary<string, IEnumerable<string>>))]
         public async Task<IActionResult> PutSeller(int id, [FromBody] Seller seller)
         {
-            if (id != seller.Id)
+            if (id != seller.Id || id == 0 || seller.Id == 0)
             {
                 return BadRequest();
             }

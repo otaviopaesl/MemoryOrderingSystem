@@ -11,5 +11,6 @@ namespace MemoryOrderingSystem.Data
         }
 
         public DbSet<Seller> Seller { get; set; }
+        public DbSet<OrderItem> OrderItem { get; set; }
     }
 }
