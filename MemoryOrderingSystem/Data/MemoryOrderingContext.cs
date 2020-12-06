@@ -1,4 +1,5 @@
 ﻿using System;
+using MemoryOrderingSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MemoryOrderingSystem.Data
@@ -8,5 +9,7 @@ namespace MemoryOrderingSystem.Data
         public MemoryOrderingContext(DbContextOptions<MemoryOrderingContext> options) : base(options)
         {
         }
+
+        public DbSet<Seller> Seller { get; set; }
     }
 }
