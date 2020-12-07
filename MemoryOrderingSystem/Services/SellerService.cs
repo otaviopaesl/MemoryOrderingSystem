@@ -67,7 +67,7 @@ namespace MemoryOrderingSystem.Services
 
             if (!hasAny)
             {
-                throw new Exception("Seller not found");
+                throw new Exception("Vendedor não encontrado.");
             }
 
             try

@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using MemoryOrderingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using MemoryOrderingSystem.Services;
+using MemoryOrderingSystem.Services.Interfaces;
+using System.Text.Json.Serialization;
 
 namespace MemoryOrderingSystem
 {
@@ -24,20 +26,26 @@ namespace MemoryOrderingSystem
             services.AddDbContext<MemoryOrderingContext>(options =>
                 options.UseInMemoryDatabase("MemoryOrdering"));
 
-            services.AddControllers();
+            services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
 
             services.AddSwaggerGen();
 
             services.AddScoped<SellerService>();
             services.AddScoped<OrderItemService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<SetupService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, SetupService setupService)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                setupService.Setup();
             }
 
             app.UseSwagger();

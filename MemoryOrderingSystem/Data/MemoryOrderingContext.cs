@@ -1,5 +1,4 @@
-﻿using System;
-using MemoryOrderingSystem.Models;
+﻿using MemoryOrderingSystem.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MemoryOrderingSystem.Data
@@ -12,5 +11,7 @@ namespace MemoryOrderingSystem.Data
 
         public DbSet<Seller> Seller { get; set; }
         public DbSet<OrderItem> OrderItem { get; set; }
+        public DbSet<Order> Order { get; set; }
+
     }
 }
